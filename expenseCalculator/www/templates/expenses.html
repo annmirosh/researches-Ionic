@@ -1,4 +1,4 @@
-<ion-view view-title="Expenses: {{availableLimit | currency : $}}">
+<ion-view ng-controller="ExpenseController as expenseCtrl" view-title="Expenses: {{expenseCtrl.availableLimit | currency : $}}">
     <ion-content>
         <div class="list">
             <label class="item item-input item-select">
@@ -6,30 +6,30 @@
                     Choose product
                 </div>
                 <select
-                        ng-model="expenseInfo.selectedProduct"
-                        ng-options="item as item.name for item in favoriteProducts">
+                        ng-model="expenseCtrl.expenseInfo.selectedProduct"
+                        ng-options="item as item.name for item in expenseCtrl.favoriteProducts">
                 </select>
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Custom product..." ng-model="expenseInfo.customProduct">
+                <input type="text" placeholder="Custom product..." ng-model="expenseCtrl.expenseInfo.customProduct">
             </label>
 
             <div class="row">
                 <div class="col">
                     <label class="item item-input">
-                        <input type="tel" ng-model="expenseInfo.price" ui-money-mask="2" required>
+                        <input type="tel" ng-model="expenseCtrl.expenseInfo.price" ui-money-mask="2" required>
                     </label>
                 </div>
                 <div class="col">
                     <label class="item item-input">
-                        <input type="number" ng-model="expenseInfo.count">
+                        <input type="number" ng-model="expenseCtrl.expenseInfo.count">
                     </label>
                 </div>
                 <div class="col">
                     <button
                             class="button button-dark button-block vertical-margin-zero"
-                            ng-click="addToDailyProductList()"
-                            ng-disabled="!(expenseInfo.selectedProduct || expenseInfo.customProduct)">
+                            ng-click="expenseCtrl.addToDailyProductList()"
+                            ng-disabled="!(expenseCtrl.expenseInfo.selectedProduct || expenseCtrl.expenseInfo.customProduct)">
                         Add
                     </button>
                 </div>
@@ -37,13 +37,13 @@
         </div>
 
         <div class="list">
-            <div class="row" ng-repeat="product in purchasedProducts">
+            <div class="row" ng-repeat="product in expenseCtrl.purchasedProducts">
                 <div class="col">{{product.name}}</div>
                 <div class="col">{{product.price | currency : $}}</div>
                 <div class="col">
                     <button
                             class="button button-assertive button-block vertical-margin-zero"
-                            ng-click="removeProduct($index)">Remove
+                            ng-click="expenseCtrl.removeProduct($index)">Remove
                     </button>
                 </div>
             </div>

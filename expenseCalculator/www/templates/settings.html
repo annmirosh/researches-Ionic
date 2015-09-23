@@ -1,10 +1,10 @@
 <ion-view view-title="Settings">
 
-    <ion-content>
+    <ion-content ng-controller="SettingsController as settingsCtrl">
         <div class="list">
             <label class="item item-input">
                 <span class="input-label">Daily limit</span>
-                <input type="tel" ng-model="settings.dailyLimit" ui-money-mask="2" required>
+                <input type="tel" ng-model="settingsCtrl.settings.dailyLimit" ui-money-mask="2" required>
             </label>
 
             <ul class="list">
@@ -12,17 +12,17 @@
                     <div class="row">
                         <div class="col">
                             <label class="item item-input">
-                                <input type="text" ng-model="settings.product" placeholder="Product...">
+                                <input type="text" ng-model="settingsCtrl.settings.product" placeholder="Product...">
                             </label>
                         </div>
                         <div class="col">
                             <button class="button button-dark button-block vertical-margin-zero"
-                                    ng-click="addProduct()">Add new product
+                                    ng-click="settingsCtrl.addProduct()">Add new product
                             </button>
                         </div>
                     </div>
                 </div>
-                <li class="item" ng-repeat="product in settings.defaultProducts">
+                <li class="item" ng-repeat="product in settingsCtrl.settings.defaultProducts">
                     <span class="input-label">{{product.name}}</span>
                 </li>
             </ul>
@@ -33,7 +33,7 @@
     <ion-footer-bar>
         <button
                 class="button button-dark button-block vertical-margin-zero"
-                ng-click="save()">Save settings
+                ng-click="settingsCtrl.save()">Save settings
         </button>
     </ion-footer-bar>
 </ion-view>

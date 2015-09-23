@@ -8,56 +8,56 @@
   ExpenseController.$inject = [ '$rootScope', '$scope', 'DataKeeperService' ];
 
   function ExpenseController($rootScope, $scope, DataKeeperService) {
-    console.log('create ExpenseController')
-    $scope.expenseInfo = {
+    var vm = this;
+    vm.expenseInfo = {
       selectedProduct: null,
       customProduct: null,
       price: 0,
       count: 1
     };
 
-    $scope.dailyLimit = DataKeeperService.dailyLimit;
-    $scope.availableLimit = $scope.dailyLimit;
-    $scope.favoriteProducts = DataKeeperService.favoriteProducts;
-    $scope.purchasedProducts = [];
-    $scope.addToDailyProductList = addToDailyProductList;
-    $scope.removeProduct = removeProduct;
+    vm.dailyLimit = DataKeeperService.dailyLimit;
+    vm.availableLimit = vm.dailyLimit;
+    vm.favoriteProducts = DataKeeperService.favoriteProducts;
+    vm.purchasedProducts = [];
+    vm.addToDailyProductList = addToDailyProductList;
+    vm.removeProduct = removeProduct;
     $scope.$watchCollection('purchasedProducts', calculateAvailableLimit);
     $scope.$on('dailyLimitWasChanged', function (event, args) {
       console.log('dailyLimitWasChanged')
-      $scope.dailyLimit = DataKeeperService.dailyLimit;
+      vm.dailyLimit = DataKeeperService.dailyLimit;
     });
 
     $scope.$on('favoriteProductsWereChanged', function (event, args) {
       console.log('favoriteProductsWereChanged')
-      $scope.favoriteProducts = DataKeeperService.favoriteProducts;
+      vm.favoriteProducts = DataKeeperService.favoriteProducts;
     });
 
 
     function addToDailyProductList() {
-      $scope.purchasedProducts.push({
-        name: $scope.expenseInfo.customProduct ? $scope.expenseInfo.customProduct : $scope.expenseInfo.selectedProduct.name,
-        price: $scope.expenseInfo.price * $scope.expenseInfo.count
+      vm.purchasedProducts.push({
+        name: vm.expenseInfo.customProduct ? vm.expenseInfo.customProduct : vm.expenseInfo.selectedProduct.name,
+        price: vm.expenseInfo.price * vm.expenseInfo.count
       });
 
       resetDefaultValues();
     }
 
     function removeProduct(index) {
-      $scope.purchasedProducts.splice(index, 1);
+      vm.purchasedProducts.splice(index, 1);
     }
 
     function calculateAvailableLimit() {
       var amount = 0;
-      $scope.purchasedProducts.forEach(function (product) {
+      vm.purchasedProducts.forEach(function (product) {
         amount += product.price;
       });
-      $scope.availableLimit = $scope.dailyLimit - amount;
+      vm.availableLimit = vm.dailyLimit - amount;
     }
 
     function resetDefaultValues() {
-      $scope.count = 1;
-      $scope.expenseInfo.customProduct = '';
+      vm.count = 1;
+      vm.expenseInfo.customProduct = '';
     }
   }
 })();
