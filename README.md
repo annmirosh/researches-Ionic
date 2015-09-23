@@ -18,6 +18,9 @@ Application for calculating daily expenses, it was written with using Ionic and 
         //for launching app in the browser
         $ ionic serve 
         
+        //for launching app in the browser in emulator mode
+        $ ionic serve --lab
+        
         //for launching app on device
         $ ionic build android
         $ ionic run android

@@ -23,8 +23,14 @@
     $scope.addToDailyProductList = addToDailyProductList;
     $scope.removeProduct = removeProduct;
     $scope.$watchCollection('purchasedProducts', calculateAvailableLimit);
-    $scope.$on('dailyLimitChanged', function (event, args) {
+    $scope.$on('dailyLimitWasChanged', function (event, args) {
+      console.log('dailyLimitWasChanged')
       $scope.dailyLimit = DataKeeperService.dailyLimit;
+    });
+
+    $scope.$on('favoriteProductsWereChanged', function (event, args) {
+      console.log('favoriteProductsWereChanged')
+      $scope.favoriteProducts = DataKeeperService.favoriteProducts;
     });
 
 

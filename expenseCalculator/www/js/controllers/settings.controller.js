@@ -10,14 +10,22 @@
   function SettingsController($rootScope, $scope, DataKeeperService) {
 
     $scope.settings = {
-      dailyLimit: DataKeeperService.dailyLimit
+      dailyLimit: DataKeeperService.dailyLimit,
+      defaultProducts: DataKeeperService.favoriteProducts
     }
 
     $scope.save = save;
+    $scope.addProduct = addProduct;
 
     function save() {
       DataKeeperService.save('dailyLimit', $scope.settings.dailyLimit);
-      $rootScope.$broadcast('dailyLimitChanged', {});
+      $rootScope.$broadcast('dailyLimitWasChanged', {});
+    }
+
+    function addProduct() {
+      $scope.settings.defaultProducts.push({name: $scope.settings.product});
+      DataKeeperService.save('favoriteProducts', $scope.settings.defaultProducts);
+      $rootScope.$broadcast('favoriteProductsWereChanged', {});
     }
   }
 })();
