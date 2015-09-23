@@ -11,13 +11,13 @@
                 </select>
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Type product" ng-model="expenseInfo.customProduct">
+                <input type="text" placeholder="Custom product..." ng-model="expenseInfo.customProduct">
             </label>
 
             <div class="row">
                 <div class="col">
                     <label class="item item-input">
-                        <input type="text" ng-model="expenseInfo.price" ui-money-mask="2" required>
+                        <input type="tel" ng-model="expenseInfo.price" ui-money-mask="2" required>
                     </label>
                 </div>
                 <div class="col">
