@@ -1,4 +1,12 @@
 {
   "name": "expenseCalculator",
-  "app_id": ""
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "app_id": "",
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

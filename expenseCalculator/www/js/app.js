@@ -1,5 +1,6 @@
 angular.module('app', [
   'ionic',
+  'ui.utils.masks',
   'app.expenseController',
   'app.settingsController'
 ])
@@ -33,7 +34,8 @@ angular.module('app', [
         url: '/expenses',
         views: {
           'menuContent': {
-            templateUrl: 'templates/expenses.html'
+            templateUrl: 'templates/expenses.html',
+            controller: 'ExpenseController'
           }
         }
       })
