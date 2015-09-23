@@ -1,23 +1,23 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module( 'app.settingsController', ['app.dataKeeperService'] )
-        .controller( 'SettingsController', SettingsController );
+  angular
+    .module('app.settingsController', [ 'app.dataKeeperService' ])
+    .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['$rootScope', '$scope', 'DataKeeperService'];
+  SettingsController.$inject = [ '$rootScope', '$scope', 'DataKeeperService' ];
 
-    function SettingsController( $rootScope, $scope, DataKeeperService ) {
-        $scope.dailyLimit = DataKeeperService.dailyLimit;
+  function SettingsController($rootScope, $scope, DataKeeperService) {
 
-
-        $scope.save = save;
-
-
-        function save() {
-            debugger;
-            DataKeeperService.save( 'dailyLimit', $scope.dailyLimit );
-            $rootScope.$broadcast( 'dailyLimitChanged',{} );
-        }
+    $scope.settings = {
+      dailyLimit: DataKeeperService.dailyLimit
     }
+
+    $scope.save = save;
+
+    function save() {
+      DataKeeperService.save('dailyLimit', $scope.settings.dailyLimit);
+      $rootScope.$broadcast('dailyLimitChanged', {});
+    }
+  }
 })();
