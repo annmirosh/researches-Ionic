@@ -8,6 +8,7 @@
   ExpenseController.$inject = [ '$rootScope', '$scope', 'DataKeeperService' ];
 
   function ExpenseController($rootScope, $scope, DataKeeperService) {
+    console.log('create ExpenseController')
     $scope.expenseInfo = {
       selectedProduct: null,
       customProduct: null,
@@ -26,15 +27,6 @@
       $scope.dailyLimit = DataKeeperService.dailyLimit;
     });
 
-
-    //$scope.selectUpdated = selectUpdated;
-    //
-    //function selectUpdated(selectedProduct) {
-    //  console.log('Updated');
-    //  $scope.selectedProduct = selectedProduct;
-    //  //console.log(selectedProduct);
-    //  console.log($scope);
-    //}
 
     function addToDailyProductList() {
       $scope.purchasedProducts.push({
