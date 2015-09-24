@@ -22,17 +22,6 @@
     vm.purchasedProducts = [];
     vm.addToDailyProductList = addToDailyProductList;
     vm.removeProduct = removeProduct;
-    $scope.$watchCollection('purchasedProducts', calculateAvailableLimit);
-    $scope.$on('dailyLimitWasChanged', function (event, args) {
-      console.log('dailyLimitWasChanged')
-      vm.dailyLimit = DataKeeperService.dailyLimit;
-    });
-
-    $scope.$on('favoriteProductsWereChanged', function (event, args) {
-      console.log('favoriteProductsWereChanged')
-      vm.favoriteProducts = DataKeeperService.favoriteProducts;
-    });
-
 
     function addToDailyProductList() {
       vm.purchasedProducts.push({
@@ -41,10 +30,12 @@
       });
 
       resetDefaultValues();
+      calculateAvailableLimit();
     }
 
     function removeProduct(index) {
       vm.purchasedProducts.splice(index, 1);
+      calculateAvailableLimit();
     }
 
     function calculateAvailableLimit() {
@@ -59,5 +50,7 @@
       vm.count = 1;
       vm.expenseInfo.customProduct = '';
     }
+
+    return vm;
   }
 })();

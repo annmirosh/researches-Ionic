@@ -19,14 +19,13 @@
     vm.addProduct = addProduct;
 
     function save() {
+      debugger;
       DataKeeperService.save('dailyLimit', vm.settings.dailyLimit);
-      $rootScope.$broadcast('dailyLimitWasChanged', {});
     }
 
     function addProduct() {
       vm.settings.defaultProducts.push({name: vm.settings.product});
       DataKeeperService.save('favoriteProducts', vm.settings.defaultProducts);
-      $rootScope.$broadcast('favoriteProductsWereChanged', {});
     }
   }
 })();

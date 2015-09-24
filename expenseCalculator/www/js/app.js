@@ -34,7 +34,8 @@ angular.module('app', [
         url: '/expenses',
         views: {
           'menuContent': {
-            templateUrl: 'templates/expenses.html'
+            templateUrl: 'templates/expenses.html',
+            controller: 'ExpenseController as expenseCtrl'
           }
         }
       })
@@ -43,7 +44,8 @@ angular.module('app', [
         url: '/settings',
         views: {
           'menuContent': {
-            templateUrl: 'templates/settings.html'
+            templateUrl: 'templates/settings.html',
+            controller: 'SettingsController as settingsCtrl'
           }
         }
       });
