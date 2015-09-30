@@ -9290,3 +9290,11 @@ a.button {
 .vertical-margin-zero {
   margin-top: 0px !important;
   margin-bottom: 0px !important; }
+
+.inline {
+  display: inline-block !important; }
+
+.currency-sign {
+  top: 2px;
+  position: relative;
+  font-size: 14px; }
