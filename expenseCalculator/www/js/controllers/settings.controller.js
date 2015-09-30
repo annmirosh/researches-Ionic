@@ -19,7 +19,7 @@
       };
 
     vm.settings = {
-      dailyLimit: DataKeeperService.dailyLimit,
+      dailyLimit: parseFloat(DataKeeperService.dailyLimit),
       defaultProducts: DataKeeperService.favoriteProducts,
       currencies: [ dollarSign, rubSign ],
       selectedCurrency: dollarSign

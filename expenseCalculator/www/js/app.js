@@ -1,6 +1,7 @@
 angular.module('app', [
   'ionic',
   'ui.utils.masks',
+  'app.currency',
   'app.expenseController',
   'app.settingsController'
 ])
