@@ -8,11 +8,21 @@
   SettingsController.$inject = [ '$rootScope', 'DataKeeperService', '$scope' ];
 
   function SettingsController($rootScope, DataKeeperService, $scope) {
-    var vm = this;
+    var vm = this,
+      dollarSign = {
+        sign: '$',
+        beforeValue: true
+      },
+      rubSign = {
+        sign: 'руб.',
+        beforeValue: false
+      };
 
     vm.settings = {
       dailyLimit: DataKeeperService.dailyLimit,
-      defaultProducts: DataKeeperService.favoriteProducts
+      defaultProducts: DataKeeperService.favoriteProducts,
+      currencies: [ dollarSign, rubSign ],
+      selectedCurrency: dollarSign
     };
 
     vm.save = save;
