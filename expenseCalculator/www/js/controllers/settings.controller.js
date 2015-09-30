@@ -5,9 +5,9 @@
     .module('app.settingsController', [ 'app.dataKeeperService' ])
     .controller('SettingsController', SettingsController);
 
-  SettingsController.$inject = [ '$rootScope', 'DataKeeperService' ];
+  SettingsController.$inject = [ '$rootScope', 'DataKeeperService', '$scope' ];
 
-  function SettingsController($rootScope, DataKeeperService) {
+  function SettingsController($rootScope, DataKeeperService, $scope) {
     var vm = this;
 
     vm.settings = {
@@ -21,11 +21,13 @@
 
     function save() {
       DataKeeperService.save('dailyLimit', vm.settings.dailyLimit);
+      DataKeeperService.save('favoriteProducts', vm.settings.defaultProducts);
     }
 
     function addProduct() {
-      vm.settings.defaultProducts.push({name: vm.settings.product});
-      DataKeeperService.save('favoriteProducts', vm.settings.defaultProducts);
+      if ( this.addProductForm.$valid ) {
+        vm.settings.defaultProducts.push({name: vm.settings.product});
+      }
     }
 
     function removeDefaultProduct(index) {
